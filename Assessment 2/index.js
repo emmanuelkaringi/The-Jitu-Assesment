@@ -19,11 +19,11 @@ form.addEventListener('submit', function(e) {
     .then(function(response) {
       return response.json();
     })
-    .then(function(data) {
-      console.log(data);
+    .then(function(post) {
+      console.log(post);
       const results = document.getElementById('results');
-      results.innerHTML = `<h2>${data.title}</h2>
-        <p>${data.body}</p>`;
+      results.innerHTML = `<h2>${post.title}</h2>
+        <p>${post.body}</p>`;
     })
     .catch(function(error) {
       console.error('Error:', error);
@@ -99,3 +99,28 @@ function deletePost(postId) {
       console.error('Error:', error);
     });
 }
+
+// Filter posts
+fetch('https://jsonplaceholder.typicode.com/posts?userId=1') 
+    .then(function(response) {
+    return response.json();
+  })
+  .then(function(posts) {
+    const postsList = document.getElementById('postsList');
+    postsList.innerHTML = '';
+
+    // Create list items
+    posts.forEach(function(post) {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `
+        <h3>${post.title}</h3>
+        <p>${post.body}</p>
+        <button onclick="editPost(${post.id})">Edit</button>
+        <button onclick="deletePost(${post.id})">Delete</button>
+      `;
+      postsList.appendChild(listItem);
+    });
+  })
+  .catch(function(error) {
+    console.error('Error:', error);
+  });
