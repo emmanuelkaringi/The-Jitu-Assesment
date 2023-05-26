@@ -1,3 +1,4 @@
+//BankAccount base class
 class BankAccount {
     constructor(accountNumber, accountHolder, balance) {
       this._accountNumber = accountNumber;
@@ -21,6 +22,8 @@ class BankAccount {
       if (amount > 0) {
         this._balance += amount;
         console.log(`Deposited Ksh.${amount} into ${this._accountNumber}`);
+      } else{
+        console.log(`Amount should be greater than 0.`)
       }
     }
   
@@ -34,6 +37,7 @@ class BankAccount {
     }
   }
   
+  // SavingsAccount class
   class SavingsAccount extends BankAccount {
     constructor(accountNumber, accountHolder, balance, interestRate) {
       super(accountNumber, accountHolder, balance);
@@ -57,6 +61,7 @@ class BankAccount {
     }
   }
   
+  // CheckingAccount Class
   class CheckingAccount extends BankAccount {
     constructor(accountNumber, accountHolder, balance, overdraftLimit) {
       super(accountNumber, accountHolder, balance);
@@ -74,7 +79,7 @@ class BankAccount {
     withdraw(amount) {
       if (amount > 0 && amount <= this._balance + this._overdraftLimit) {
         this._balance -= amount;
-        console.log(`Withdrew Ksh${amount} from account ${this._accountNumber}`);
+        console.log(`Withdrew Ksh.${amount} from account ${this._accountNumber}`);
       } else {
         console.log(`Withdrawal amount exceeds overdraft limit for account ${this._accountNumber}`);
       }
