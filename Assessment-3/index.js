@@ -94,20 +94,19 @@ class BankAccount {
   console.log("Account Number:", savingsAccount.accountNumber);
   console.log("Account Holder:", savingsAccount.accountHolder);
   console.log("Balance:", savingsAccount.balance);
+  // Deposit into account
+  savingsAccount.deposit(1000);
+  // Withdraw from account
+  savingsAccount.withdraw(13200);
+  // Calculate interest
+  savingsAccount.calculateInterest();
 
   // Account Information for Checking Account
   console.log("\nChecking Account Information:");
   console.log("Account Number:", checkingAccount.accountNumber);
   console.log("Account Holder:", checkingAccount.accountHolder);
   console.log("Balance:", checkingAccount.balance);
-
-  // Deposit into both accounts
-  savingsAccount.deposit(1000);
+  // Deposit into account
   checkingAccount.deposit(2000);
-  
-  // Withdraw from both accounts
-  savingsAccount.withdraw(13200);
+  // Withdraw from account
   checkingAccount.withdraw(4900);
-  
-  // Calculate interest for SavingsAccount
-  savingsAccount.calculateInterest();
