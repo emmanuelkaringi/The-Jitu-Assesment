@@ -10,26 +10,36 @@ const transport = nodemailer.createTransport({
   }
 });
 
-const sendEmail = (receiver, subject, content) => {
-  ejs.renderFile(__dirname + '/templates/welcome.ejs', { receiver, content }, (err, data) => {
-    if (err) {
-      console.log(err);
-    } else {
-      const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: process.env.EMAIL_RECEIVER,
-        subject: subject,
-        html: data
-      };
+const sendEmail = (subject, content) => {
+    ejs.renderFile(__dirname + '/body.ejs', { content }, (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        const mailOptions = {
+          from: process.env.EMAIL_USER,
+          to: process.env.EMAIL_RECEIVER,
+          subject: subject,
+          html: data,
+          attachments: [
+            {
+              filename: 'Emmanuel Kariithi WEEK 8 REPORT',
+              path: './Emmanuel Kariithi WEEK 8 REPORT.docx',
+              cid: 'REPORT'
+            }
+          ]
+        };
+  
+        transport.sendMail(mailOptions, (error, info) => {
+          if (error) {
+            return console.log(error);
+          }
+          console.log('Message sent: %s', info.messageId);
+        });
+      }
+    });
+  };
+  
 
-      transport.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          return console.log(error);
-        }
-        console.log('Message sent: %s', info.messageId);
-      });
-    }
-  });
-};
-
-module.exports = sendEmail;
+module.exports = {
+    sendEmail
+  };

@@ -5,8 +5,8 @@ const app = express();
 
 app.post("/sendmail", (req, res) => {
     sendEmail(
-        "Immah",
-        "Test Mail"
+        "Week 8 Report",
+        "Message content"
     );
     res.send("send email success");
 });
