@@ -17,7 +17,7 @@ const sendEmail = (receiver, subject, content) => {
     } else {
       const mailOptions = {
         from: process.env.EMAIL_USER,
-        to: 'emmanuelkaringi@gmail.com',
+        to: process.env.EMAIL_RECEIVER,
         subject: subject,
         html: data
       };

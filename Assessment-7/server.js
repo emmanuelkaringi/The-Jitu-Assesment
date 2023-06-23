@@ -5,9 +5,8 @@ const app = express();
 
 app.post("/sendmail", (req, res) => {
     sendEmail(
-        "test@mailinator.com",
-        "Welcome message",
-        "Welcome message content"
+        "Immah",
+        "Test Mail"
     );
     res.send("send email success");
 });
