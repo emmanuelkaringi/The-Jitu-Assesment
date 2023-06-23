@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 const nodemailer = require('nodemailer');
 const ejs = require('ejs');
 
@@ -10,8 +10,8 @@ const transport = nodemailer.createTransport({
   }
 });
 
-const sendEmail = (subject, content) => {
-    ejs.renderFile(__dirname + '/body.ejs', { content }, (err, data) => {
+const sendEmail = (subject) => {
+    ejs.renderFile(__dirname + '/body.ejs', (err, data) => {
       if (err) {
         console.log(err);
       } else {
@@ -22,8 +22,8 @@ const sendEmail = (subject, content) => {
           html: data,
           attachments: [
             {
-              filename: 'Emmanuel Kariithi WEEK 8 REPORT',
-              path: './Emmanuel Kariithi WEEK 8 REPORT.docx',
+              filename: 'Emmanuel Kariithi WEEK 8 REPORT.docx',
+              path: './Emmanuel-Kariithi-WEEK-8-REPORT.docx',
               cid: 'REPORT'
             }
           ]
@@ -31,15 +31,15 @@ const sendEmail = (subject, content) => {
   
         transport.sendMail(mailOptions, (error, info) => {
           if (error) {
-            return console.log(error);
+            console.log(error);
+          } else {
+            console.log('Message sent: %s', info.messageId);
           }
-          console.log('Message sent: %s', info.messageId);
         });
       }
     });
-  };
-  
+};
 
 module.exports = {
     sendEmail
-  };
+};
