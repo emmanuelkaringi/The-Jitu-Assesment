@@ -1,26 +1,27 @@
 // Write a JavaScript program to find the leap years in a given range of years.
 
-function leap_year(start, end) {
-    let range =[];
-    for (let i = start; i<=end; i++){
-        range.push[1];
-    }
-    let new_array = [];
+function year_range(start, end) {
+  let range = [];
+  for (let i = start; i <= end; i++) {
+    range.push(i);
+  }
+  let new_array = [];
 
-    range.forEach(
-        function(year){
-            if(test_leap_year(year))
-            new_array.push(year);
-        });
-    return new_array;
+  range.forEach(function (year) {
+    if (leap_years(year)) new_array.push(year);
+  });
+  return new_array;
 }
 
-function test_leap_year(year){
-    if((year % 4 === 0 && year % 100 !== 0) || (year % 100 === 0 && year % 400 === 0)){
-        return year;
-    }else {
-        return false;
-    }
+function leap_years(year) {
+  if (
+    (year % 4 === 0 && year % 100 !== 0) ||
+    (year % 100 === 0 && year % 400 === 0)
+  ) {
+    return year;
+  } else {
+    return false;
+  }
 }
 
-console.log(leap_year(2000, 2012))
+console.log(year_range(1997, 2023));
